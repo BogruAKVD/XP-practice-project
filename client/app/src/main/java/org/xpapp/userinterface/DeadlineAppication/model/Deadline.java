@@ -14,4 +14,16 @@ public class Deadline {
         this.timeToComplete = timeToComplete;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public OffsetDateTime getDeadline() {
+        return getDeadline();
+    }
+
+    public Long getTimeToComplete() {
+        return timeToComplete;
+    }
+
 }
