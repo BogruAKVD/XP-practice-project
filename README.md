@@ -1,1 +1,1 @@
-# XP-practice-project-test
+# XP-practice-project
