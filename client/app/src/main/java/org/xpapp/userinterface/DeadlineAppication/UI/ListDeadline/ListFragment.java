@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.xpapp.userinterface.DeadlineAppication.R;
 import org.xpapp.userinterface.DeadlineAppication.databinding.FragmentFirstBinding;
@@ -22,8 +24,22 @@ public class ListFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
+        ListViewModel listViewModel =
+                new ViewModelProvider(this).get(ListViewModel.class);
+        listViewModel.setDeadlineAdapterWithContext(this.getContext());
+
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+
+        View root = binding.getRoot();
+        final RecyclerView recyclerView = binding.deadlineRecyclerView;
+        listViewModel.getDeadlineAdapter().observe(getViewLifecycleOwner(),
+                recyclerView::setAdapter);
+        DeadlineAdapter.navController = NavHostFragment.findNavController(this);
+        //binding.userRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        //binding.userRecyclerView.setAdapter(
+        //new UserAdapter(this.getContext(), coachListOfSportsmenViewModel.getUserList()));
+        //new UserAdapter(this.getContext(), new ArrayList<>()));
+        return root;
 
     }
 
