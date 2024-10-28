@@ -24,4 +24,15 @@ class HelloControllerTest {
 		             .expectBody(String.class)
 		             .isEqualTo("Hello World!");
 	}
+
+	@Test
+	void failure() {
+		webTestClient.get()
+				.uri("/test")
+				.exchange()
+				.expectStatus()
+				.isOk()
+				.expectBody(String.class)
+				.isEqualTo("No");
+	}
 }
