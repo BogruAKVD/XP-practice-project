@@ -1,4 +1,4 @@
-package org.xpapp.userinterface.DeadlineAppication;
+package org.xpapp.userinterface.DeadlineAppication.UI.ListDeadline;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import org.xpapp.userinterface.DeadlineAppication.databinding.FragmentSecondBinding;
+import org.xpapp.userinterface.DeadlineAppication.R;
+import org.xpapp.userinterface.DeadlineAppication.databinding.FragmentFirstBinding;
 
-public class SecondFragment extends Fragment {
+public class ListFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentFirstBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +22,7 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,9 +30,9 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(v ->
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.fab.setOnClickListener(v ->
+                NavHostFragment.findNavController(ListFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
         );
     }
 
