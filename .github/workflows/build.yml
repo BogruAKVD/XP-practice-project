@@ -21,6 +21,7 @@ jobs:
 
 #       build project and run all tests & checks
       - name: Maven Verify
+        working-directory: server
         run: mvn -B clean verify
 
 ##       Upload code coverage report to Codecov
