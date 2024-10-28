@@ -14,8 +14,16 @@ public class DeadlineService {
     @Autowired
     private DeadlineRepository deadlineRepository;
 
-    public List<DeadlineEntity> getDeadlinesByUserId(Long userId) {
-        return deadlineRepository.findByUserId(userId);
+    public List<DeadlineDTO> getDeadlinesByUserId(Long userId) {
+        return getDeadlinesByUserId(userId).stream()
+                .map(entity -> {
+                    DeadlineDTO dto = new DeadlineDTO();
+                    dto.setName(entity.getName());
+                    dto.setDeadline(entity.getDeadline());
+                    dto.setTimeToComplete(entity.getTimeToComplete());
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
     public List<DeadlineDTO> saveDeadlines(Long userId, List<DeadlineDTO> deadlines) {

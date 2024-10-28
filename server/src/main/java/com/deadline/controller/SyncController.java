@@ -19,6 +19,15 @@ public class SyncController {
         return "Hello World!";
     }
 
+    @GetMapping("/sync/{userId}")
+    public ResponseEntity<List<DeadlineDTO>> createDeadlines(@PathVariable Long userId) {
+        List<DeadlineDTO> savedDeadlines = deadlineService.getDeadlinesByUserId(userId);
+        if (savedDeadlines == null || savedDeadlines.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(savedDeadlines);
+    }
+
     @PostMapping("/sync/{userId}")
     public ResponseEntity<List<DeadlineDTO>> createDeadlines(@PathVariable Long userId, @RequestBody List<DeadlineDTO> deadlines) {
         List<DeadlineDTO> savedDeadlines = deadlineService.saveDeadlines(userId, deadlines);
